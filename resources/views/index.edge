@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+    @include('head')
+
+    <body class="">
+        
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Topbar Start -->
+            @if(menu)
+            <div class="navbar-custom navbar-init">
+
+            </div>
+            @else
+            <div class="navbar-custom ">
+                
+                <ul class="list-unstyled topnav-menu float-right mb-0">                    
+
+                    <li class="">
+                        <a class="nav-link nav-user mr-0 waves-effect waves-light"  href="{{route('index')}}" >
+                            <i class="fe-log-out"></i> Cancelar
+                        </a>
+                    </li>        
+                </ul>
+
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="#" class="logo text-center">
+                        <span class="logo-lg">
+                            <img src="/favicon.ico" alt="Logo" height="28">
+                        </span>
+                    </a>
+                </div>
+
+                <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                    <li>
+                        <a class="nav-link text-left font-18 mr-0 btn-link"  href="javascript:void(0);" >
+                            Crear nuevo proyecto
+                        </a> 
+                    </li>
+                     
+                </ul>
+                
+            </div>
+            @endif
+            <!-- end Topbar -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page page-full" style="margin-left: auto !important;">
+                {{-- loading page --}}
+                <div class="loader">
+                    <img src="/images/loading.gif"  alt="">
+                </div>
+
+                @section('content')
+
+                @endsection
+                
+                <!-- Footer Start -->
+                <footer class="footer" style="left: 0;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{new Date().getFullYear()}} &copy; App by <a target="_blanck" href="#">App</a>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="text-md-right footer-links d-none d-sm-block">
+                                   
+                                    <a href="javascript:void(0);">Ayuda</a> 
+                                    <a href="javascript:void(0);">Ayuda 2</a> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+                <!-- end Footer -->
+
+               
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        
+    <!-- script JS -->
+    
+    @include('script')
+    @section('scripts')
+
+    @endsection
+    
+    </body>
+</html>

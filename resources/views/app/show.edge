@@ -1,0 +1,51 @@
+@layout('index')
+
+@section('content')
+<div class="content">
+        <div class="container-fluid">                        
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">    
+                    <div class="jumbotron bg-white w-900">
+
+                        <h2 class="text-center mb-3">Gestión de proyecto base</h2>
+
+                        <blockquote class="blockquote">
+                            <p class="mb-0 lead">Información del proyecto creado:</p>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Nombre:</b> {{project.name}}</footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Color:</b> {{project.color}}</footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Logo:</b> <a href="{{project.logo}} " target="_blank">Ver</a></footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Nombre DB:</b> {{project.db_name}}</footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Usuario DB:</b> {{project.db_user}}</footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Contraseña DB:</b> {{project.db_password}}</footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Webservice key:</b> {{project.key}}</footer>
+                            <footer class="blockquote-footer font-weight-ligh"><b>Webservice UID:</b> {{project.uid}}</footer>
+
+                            <p class="mb-0 mt-2 lead">Descargar recursos:</p>
+                            <footer class="blockquote-footer font-weight-ligh">Recursos Docker <a href="{{dkzip}}" target="_blank" download>Descargar</a></footer>
+                            {{--  <footer class="blockquote-footer font-weight-ligh">Plantilla Frontend - React</footer>
+                            <footer class="blockquote-footer font-weight-ligh">Docker Compose <a href="{{dkcompose}}" target="_blank" download>Descargar</a></footer>
+                            <footer class="blockquote-footer font-weight-ligh">Dockerfile app <a href="{{dockernode}}" target="_blank" download>Descargar</a></footer>
+                            <footer class="blockquote-footer font-weight-ligh">Dockerfile webservice <a href="{{dockerserver}}" target="_blank" download>Descargar</a></footer>
+                            <footer class="blockquote-footer font-weight-ligh">Configuración Nginx <a href="{{confserver}}" target="_blank" download>Descargar</a></footer>  --}}
+
+
+                        </blockquote>
+                    
+                        <hr class="my-4">
+                        <div class="text-center">
+                        <a href="{{route('app.create')}}" class="btn btn-success width-xl waves-effect waves-light "><i class="fe-check"></i> Nuevo proyecto</a>
+                        </div>
+                    </div>                               
+                    
+                </div>
+            </div>
+        </div>
+</div> <!-- content -->
+@endsection
+
+@section('scripts')
+  <script>
+      
+  </script>
+@endsection

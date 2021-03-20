@@ -1,0 +1,156 @@
+@layout('index')
+
+@section('content')
+<div class="content">
+                
+
+    <div class="wizard">
+        <div class="wizard-inner">
+            <div class="connecting-line"></div>
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active">
+                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Paso 1">
+                        <span class="round-tab">
+                            1
+                        </span>
+                    </a>
+                </li>
+
+                <li role="presentation" class="disabled">
+                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Paso 2">
+                        <span class="round-tab">
+                            2
+                        </span>
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Paso 3">
+                        <span class="round-tab">
+                           3
+                        </span>
+                    </a>
+                </li>
+
+                <li role="presentation" class="disabled">
+                    <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Paso 4">
+                        <span class="round-tab">
+                            4
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid">                        
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">                                
+                    <form role="form" id="frm-create" enctype="multipart/form-data" method="post" action="{{route('app.store')}}">
+                        {{ csrfField() }}
+                        <div class="tab-content">
+                            {{-- PASO 1 --}}
+                            <div class="tab-pane active" role="tabpanel" id="step1">
+                                <p class="title text-center mb-0">Nombre de la aplicación</p>
+                                <small class="text-center mb-4" style="display: block;">texto de ayuda</small>
+                                @if(flashMessages.has('error'))
+                                    <p class="text-danger">{{ flashMessages.get('error') }}</p>
+                                @endif
+                                <div class="form-row">
+                                    <div class="form-group col-sm-12">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Escribe un nombre para la aplicación" maxlength="100">
+                                    <span class="msg msn_name text-danger" style="width: 100%;"></span>
+                                    </div> 
+                                </div>
+                                <div class="col-12">
+                                    <button type="button" id="continue-btn-title" class="btn btn-success width-xl waves-effect waves-light  text-center mr-auto ml-auto continue-btn" style="display: none;">Continuar <i class="fe-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            {{-- PASO 2 --}}
+                            <div class="tab-pane" role="tabpanel" id="step2">
+                                <p class="title text-center mb-0">Selecciona un color primario y un logo para la aplicación</p>
+                                <small class="text-center mb-4" style="display: block;">Está información es opcional.</small>
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="color" class="form-control" name="color" id="color" placeholder="Seleccionar un color primario"  value="#248ffb">
+                                    </div> 
+                                    <div class="form-group col-md-6">
+                                        <input type="file" class="form-control" name="logo" id="logo" placeholder="Seleccionar logo" >
+                                    </div> 
+                                </div>
+                                <div class="col-12 mt-4 text-center">
+                                    <button type="button"  class="btn btn-success width-xl waves-effect waves-light  text-center mr-auto ml-auto continue-btn" >Continuar <i class="fe-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            {{-- PASO 3 --}}
+                            <div class="tab-pane" role="tabpanel" id="step3">
+                                <p class="title text-center mb-0">Configurar base de datos</p>
+                                <small class="text-center mb-4" style="display: block;">Si no indicas los datos de para la Base de datos, estos se generan automáticos.</small>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control form-2 textslug" id="db_name" name="db_name" placeholder="Nombre para la Base de datos" maxlength="100">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control form-2 textslug" id="db_user" name="db_user" placeholder="Usuario para la Base de datos" maxlength="100">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control form-2 textslug" id="db_password" name="db_password" placeholder="Contraseña para la Base de datos" maxlength="100">
+                                    </div> 
+                                    @if(modules.length < 0)
+                                    <div class="form-group col-md-12">
+                                        <p class="title text-center">Seleccionar los módulos que necesitas</p>
+                                        @each((modul, i) in modules)
+                                        <div class="p-2 bg-white rounded d-inline-flex m-1">
+                                            <div class="checkbox form-check-inline checkbox-success">
+                                                <input type="checkbox" value="{{ modul }}" id="customCheck{{i}}">
+                                                <label for="customCheck{{i}}">{{ modul }}</label>
+                                            </div>
+                                        </div>
+                                        @endeach
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="button"  class="btn btn-success width-xl waves-effect waves-light mt-4 text-center mr-auto ml-auto continue-btn">Continuar <i class="fe-chevron-right"></i></button>
+                                </div>                                
+                            </div>
+                            {{-- PASO 4 --}}
+                            <div class="tab-pane" role="tabpanel" id="complete">
+                                <p class="title text-center ">Verifica la información</p>
+                                <ul class="ml-4">
+                                    <li><p class="mb-0 font-16"><b>Nombre:</b> <span id="s_name"></span></p> </li>
+                                    <li><p class="mb-0 font-16"><b>Color:</b> <span id="s_color"></span></p> </li>
+                                    <li><p class="mb-0 font-16"><b>Logo:</b> <span id="s_logo"></span></p> </li>
+                                    <li><p class="mb-0 font-16"><b>Nombre DB:</b> <span id="s_dbname"></span></p> </li>
+                                    <li><p class="mb-0 font-16"><b>Usuario DB:</b> <span id="s_dbuser"></span></p> </li>
+                                    <li><p class="mb-0 font-16"><b>Contraseña DB:</b> <span id="s_dbpass"></span></p> </li>
+                                </ul>
+                                {{--  <h3>Paso 4: resultados</h3>
+                                <ul>
+                                    <li>Datos de la BD.</li>
+                                    <li>Datos del Host(webservice plantilla) y puerto.</li>
+                                    <li>Llave (key) y UID de conexión a la plantilla backend generada.</li>
+                                    <li>Archivos fuentes de vista Frontend con conexión al WS plantilla base.</li>
+                                    <li>Archivo dockerfile (solo para esta primera entrega)</li>
+                                </ul>  --}}
+                                <div class="col-12 text-center">
+                                    <button type="submit"  class="btn mt-4 btn-success width-xl waves-effect waves-light  text-center mr-auto ml-auto">Crear proyecto <i class="fe-check"></i></button>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div> <!-- content -->
+@endsection
+
+@section('scripts')
+<script src="/js/create.js"></script>
+@endsection

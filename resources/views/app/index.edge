@@ -1,0 +1,39 @@
+@layout('index')
+
+@section('content')
+<div class="content">
+        <div class="container-fluid">                        
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">    
+                    <div class="jumbotron bg-white w-900">
+
+                        <h2 class="text-center">Gestión de proyecto base</h2>
+                        
+                    
+                        <p class="lead mt-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda quos deleniti sint maxime, iste excepturi! Qui pariatur doloremque, animi soluta harum dolore, quae ipsum, neque non tempora quo consectetur accusamus.</p>
+                        <blockquote class="blockquote">
+                            <p class="mb-0 lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer font-weight-ligh">Plantilla Frontend - React</footer>
+                            <footer class="blockquote-footer font-weight-ligh">Plantilla Backend - NodeJS | <a href="https://adonisjs.com/">AdonisJS</a> webservice</footer>
+                            <footer class="blockquote-footer font-weight-ligh">Plantilla Conexión BD - PostgreSQL</footer>
+                            <footer class="blockquote-footer font-weight-ligh">Dockerfile</footer>
+                        </blockquote>
+                    
+                        <hr class="my-4">
+                        <div class="text-center">
+                        <a href="{{route('app.create')}}" class="btn btn-success width-xl waves-effect waves-light "><i class="fe-check"></i> Iniciar</a>
+                        </div>
+                    </div>                               
+                    
+                </div>
+            </div>
+        </div>
+</div> <!-- content -->
+@endsection
+
+@section('scripts')
+  <script>
+      
+  </script>
+@endsection

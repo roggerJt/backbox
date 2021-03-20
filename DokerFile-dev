@@ -1,0 +1,31 @@
+#Docker V0.0.1
+FROM node:14
+RUN apt-get update && apt-get install -y \
+	git 
+
+ENV appRoot=/app
+COPY . /app
+WORKDIR /app
+RUN npm install
+RUN node ace build --production
+RUN cp .env.example build/.env
+WORKDIR /app/build
+RUN npm ci --production
+
+EXPOSE  3333
+
+CMD ["node", "server.js"]
+
+#RUN mkdir /app
+#clonar backend plantilla adonis
+#RUN cd /app && git clone https://rockgger@bitbucket.org/rockgger/backbox.git
+#WORKDIR /app/backbox
+#RUN npm install
+#RUN node ace build --production
+#RUN cp .env.example build/.env
+#WORKDIR /app/backbox/build
+#RUN npm ci --production
+#COPY /nginx.conf /nginx/conf.d/default.conf
+#EXPOSE  3333
+
+#CMD ["node", "server.js"]

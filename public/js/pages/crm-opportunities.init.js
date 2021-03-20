@@ -1,0 +1,2 @@
+$(document).ready(function() { var e, t = function() { $("#status-chart").sparkline([20, 40, 30, 10, 28], { type: "pie", width: "220", height: "220", sliceColors: ["#4fc6e1", "#0691d6", "#f7b84b", "#f1556c", "#1abc9c"] }) };
+    t(), $(window).resize(function(i) { clearTimeout(e), e = setTimeout(function() { t() }, 300) }) });

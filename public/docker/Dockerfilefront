@@ -1,0 +1,13 @@
+FROM node:14
+RUN apt-get update && apt-get install -y \
+	git 
+
+RUN mkdir /var/www
+#clonar front plantilla
+RUN cd /var/www && git clone https://rockgger@bitbucket.org/rockgger/frontbox.git
+WORKDIR /var/www/frontbox
+RUN cp .env.example .env
+RUN npm install
+EXPOSE  3000
+
+CMD ["npm", "start"]

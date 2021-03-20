@@ -1,0 +1,17 @@
+#Docker V0.0.1
+FROM node:14
+RUN apt-get update && apt-get install -y \
+	git 
+
+#ENV appRoot=/app
+COPY . /app
+WORKDIR /app
+RUN npm install \
+    node ace build --production \
+    cp .env.example build/.env
+WORKDIR /app/build
+RUN npm ci --production
+
+EXPOSE  3333
+
+CMD ["node", "server.js"]

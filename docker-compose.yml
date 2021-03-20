@@ -1,0 +1,24 @@
+version: '3.9' 
+services: 
+  #node 14 
+  backbox: 
+    container_name: backbox 
+    image: box 
+    build: 
+      context: . 
+      dockerfile: Dockerfile 
+    volumes:
+      - myapp:/app/build/tmp
+    environment: 
+      - NODE_ENV=production 
+      - DB_CONNECTION=sqlite
+    restart: unless-stopped 
+    networks: 
+      - netbox    
+volumes:
+  myapp:
+       
+#network 
+networks: 
+  netbox: 
+    driver: bridge

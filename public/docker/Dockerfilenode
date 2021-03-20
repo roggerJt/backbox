@@ -1,0 +1,17 @@
+FROM node:14
+RUN apt-get update && apt-get install -y \
+	git 
+
+RUN mkdir /var/www
+#clonar backend plantilla adonis
+RUN cd /var/www && git clone https://rockgger@bitbucket.org/rockgger/webservice.git
+WORKDIR /var/www/webservice
+RUN npm install
+RUN node ace build --production
+RUN cp .env.example build/.env
+WORKDIR /var/www/webservice/build
+RUN npm ci --production
+#COPY /nginx.conf /nginx/conf.d/default.conf
+EXPOSE  8080
+
+CMD ["node", "server.js"]
